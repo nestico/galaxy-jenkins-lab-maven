@@ -1,5 +1,21 @@
 try {
     node {
+
+         stage('Building') {
+            sh 'mvn verify'
+            archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
+         }
+         stage('Dockering') {
+            copyArtifacts filter: 'target/*.jar',
+                                  fingerprintArtifacts: true,
+                                  projectName: '${JOB_NAME}',
+                                  flatten: true,
+                                  selector: specific('${BUILD_NUMBER}'),
+                                  target: 'target';
+            sh 'docker-compose build'
+                    }
+              }
+         }
         stage('Snyk Scan') {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 checkout scm
