@@ -19,14 +19,14 @@ try {
 
         stage('Snyk SCA') {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh './snyk monitor test --sarif-file-output=results-open-source.sarif'
+                sh './snyk test monitor --sarif-file-output=results-open-source.sarif'
             }
             recordIssues tool: sarif(name: 'Snyk Open Source', id: 'snyk-open-source', pattern: 'results-open-source.sarif')
         }
 
         stage('Snyk Code') {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh './snyk monitor code test --sarif-file-output=results-code.sarif'
+                sh './snyk code test monitor --sarif-file-output=results-code.sarif'
             }
             recordIssues  tool: sarif(name: 'Snyk Code', id: 'snyk-code', pattern: 'results-code.sarif')
         }
