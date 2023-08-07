@@ -19,7 +19,7 @@ try {
 
         stage('Snyk SCA') {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh './snyk test monitor --sarif-file-output=results-open-source.sarif'
+                sh './snyk test monitor --org='4ccff8cb-520b-4020-8159-5c24b69ca40f' --sarif-file-output=results-open-source.sarif'
             }
             recordIssues tool: sarif(name: 'Snyk Open Source', id: 'snyk-open-source', pattern: 'results-open-source.sarif')
         }
