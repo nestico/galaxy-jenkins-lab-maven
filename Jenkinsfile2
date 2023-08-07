@@ -2,6 +2,7 @@ try {
     node {
         stage('Snyk Scan') {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                checkout scm
                 snykSecurity organisation: 'aldotrucios', projectName: '${JOB_NAME}', severity: 'high', snykInstallation: 'snyk@latest', snykTokenId: 'organisation-snyk-api-token', targetFile: 'pom.xml'
             }
         }
