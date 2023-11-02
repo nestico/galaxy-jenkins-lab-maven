@@ -1,24 +1,5 @@
 try {
     node {
-/*
-        stage('Building') {
-            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                sh 'mvn verify'
-                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false, onlyIfSuccessful: true
-            }
-         }
-        stage('Dockering') {
-            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                copyArtifacts filter: 'target/*.jar',
-                                    fingerprintArtifacts: true,
-                                    projectName: '${JOB_NAME}',
-                                    flatten: true,
-                                    selector: specific('${BUILD_NUMBER}'),
-                                    target: 'target';
-                sh 'docker-compose build'
-            }
-        }
-/*
         stage('Snyk Scan') {
             tools {
                 maven '3.8.7'
