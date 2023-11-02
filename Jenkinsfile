@@ -18,13 +18,20 @@ try {
         }
 
         stage('Snyk SCA') {
+            tools {
+                maven '3.8.7'
+            }
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+
                 sh './snyk test --org='4ccff8cb-520b-4020-8159-5c24b69ca40f' --sarif-file-output=results-open-source.sarif'
             }
             recordIssues tool: sarif(name: 'Snyk Open Source', id: 'snyk-open-source', pattern: 'results-open-source.sarif')
         }
 
         stage('Snyk Code') {
+            tools {
+                maven '3.8.7'
+            }
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 sh './snyk code test --sarif-file-output=results-code.sarif'
             }
