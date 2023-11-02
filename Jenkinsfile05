@@ -17,7 +17,15 @@ pipeline {
                 }
             }
         }
-
+        stage('Snyk'){
+            steps {
+                script {
+                    snykSecurity organisation: 'aldotrucios', projectName: '${JOB_NAME}', 
+                     severity: 'high', snykInstallation: 'snyk@latest', 
+                     snykTokenId: 'organisation-snyk-api-token', targetFile: 'pom.xml'
+                }
+            }
+        }
         stage('SonarQube analysis') {
             steps {
                 script{
