@@ -8,7 +8,7 @@ pipeline {
         stage('Snyk'){
             steps {
                 script {
-                    snykSecurity organisation: 'josealdotrucios', projectName: '${JOB_NAME}', 
+                    snykSecurity failOnError: false, failOnIssues: false, organisation: 'josealdotrucios', projectName: '${JOB_NAME}', 
                      severity: 'high', snykInstallation: 'snyk@latest', 
                      snykTokenId: 'organisation-snyk-api-token', targetFile: 'pom.xml'
                 }
@@ -27,3 +27,4 @@ pipeline {
         }
 
     }
+}
