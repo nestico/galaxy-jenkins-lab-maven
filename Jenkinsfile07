@@ -18,6 +18,7 @@ pipeline {
             }
         }
         stage('Dockering') {
+            agent any
             steps {
                 script {
                     copyArtifacts filter: 'target/*.jar',
