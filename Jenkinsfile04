@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         CLOUDSDK_CORE_PROJECT='arcane-grin-403922'
-        GCLOUD_CREDS=credentials('gcloud-creds2')
+        GCLOUD_CREDS=credentials('gcloud-creds')
     }
     stages {
         stage('gcloud login'){
