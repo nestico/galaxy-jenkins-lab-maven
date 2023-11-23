@@ -5,7 +5,7 @@ pipeline {
         }
     }
     environment {
-        CLOUDSDK_CORE_PROJECT='canvas-landing-397000'
+        CLOUDSDK_CORE_PROJECT='arcane-grin-403922'
         GCLOUD_CREDS=credentials('gcloud-creds2')
     }
     stages {
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh '''
                     gcloud version
-                    gcloud config set project canvas-landing-397000
+                    gcloud config set project arcane-grin-403922
                     gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
                     '''
             }
