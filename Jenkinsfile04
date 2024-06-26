@@ -5,7 +5,7 @@ pipeline {
         }
     }
     environment {
-        CLOUDSDK_CORE_PROJECT='arcane-grin-403922'
+        CLOUDSDK_CORE_PROJECT='hypnotic-epoch-411523'
         GCLOUD_CREDS=credentials('gcloud-credentials')
     }
     stages {
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh '''
                     gcloud version
-                    gcloud config set project arcane-grin-403922
+                    gcloud config set project hypnotic-epoch-411523
                     gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
                     '''
             }
